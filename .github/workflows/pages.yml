@@ -21,6 +21,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # 仓库原先使用「分支构建」发布，该模式无法加载主题 gem；此处一次性切换到 GitHub Actions 构建
+      - name: Use GitHub Actions as Pages source
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          api="https://api.github.com/repos/${GITHUB_REPOSITORY}/pages"
+          current=$(curl -sS -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" "$api" | jq -r '.build_type // "none"')
+          echo "Pages build_type: $current"
+          if [ "$current" != "workflow" ]; then
+            code=$(curl -sS -o /dev/null -w '%{http_code}' -X PUT \
+              -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" \
+              "$api" -d '{"build_type":"workflow"}')
+            echo "Switch to GitHub Actions build_type: HTTP $code"
+          fi
+
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
