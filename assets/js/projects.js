@@ -1,12 +1,19 @@
 /*
  * 首页项目列表：从 GitHub 公开 API 自动同步该账号下的公开仓库。
- * 仓库启用 GitHub Pages 时，在名称右侧显示「演示」按钮。
+ * 仓库启用 GitHub Pages 时，在名称右侧显示「展示」图标（外链样式）。
  */
 (function () {
   "use strict";
 
   // 10 分钟内复用上次结果，减少对 GitHub API 的调用（未认证请求每小时 60 次）
   var CACHE_TTL = 10 * 60 * 1000;
+
+  var DEMO_ICON =
+    '<svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true" focusable="false">' +
+    '<path d="M9 2.6H4A1.6 1.6 0 0 0 2.4 4.2v7.6A1.6 1.6 0 0 0 4 13.4h7.6a1.6 1.6 0 0 0 1.6-1.6V7.6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>' +
+    '<path d="M10.6 2.4H14v3.4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>' +
+    '<path d="M14 2.4 8.4 8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>' +
+    "</svg>";
 
   var list = document.getElementById("project-list");
   if (!list) {
@@ -49,7 +56,9 @@
   function createElement(tag, className, text) {
     var node = document.createElement(tag);
     node.className = className;
-    node.textContent = text;
+    if (text !== undefined) {
+      node.textContent = text;
+    }
     return node;
   }
 
@@ -79,11 +88,13 @@
     head.appendChild(name);
 
     if (project.pages) {
-      var demo = createElement("a", "project-demo", "演示");
+      var demo = createElement("a", "project-demo");
       demo.href = project.pages;
       demo.target = "_blank";
       demo.rel = "noopener";
-      demo.title = project.pages;
+      demo.title = "展示";
+      demo.setAttribute("aria-label", project.name + " 展示");
+      demo.innerHTML = DEMO_ICON;
       head.appendChild(demo);
     }
 

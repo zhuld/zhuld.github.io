@@ -47,13 +47,14 @@ section[id] {
 
 .project-demo {
   flex: 0 0 auto;
-  padding: 0.1rem 0.7rem;
-  font-size: 0.8rem;
-  line-height: 1.6;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.6rem;
+  height: 1.6rem;
   color: #ffffff;
   background-color: #008aff;
-  border-radius: 999px;
-  white-space: nowrap;
+  border-radius: 50%;
 }
 
 .project-demo:hover {

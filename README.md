@@ -10,7 +10,7 @@
 
 - 使用 **Beautiful Jekyll 6** 主题（`beautiful-jekyll-theme` gem），自带 Bootstrap 4 响应式布局、移动端汉堡菜单与页脚社交链接
 - 项目列表**自动同步**自 GitHub：页面加载时调用 GitHub 公开 API 列出该账号的全部公开仓库，无需手工维护数据文件
-- 项目名称链接到对应的 GitHub 仓库；已开启 GitHub Pages 的仓库（`has_pages` 为真）会在右侧显示「演示」按钮，指向 `https://<用户名>.github.io/<仓库名>/`
+- 项目名称链接到对应的 GitHub 仓库；已开启 GitHub Pages 的仓库（`has_pages` 为真）会在右侧显示「展示」图标，指向 `https://<用户名>.github.io/<仓库名>/`
 - 项目列表自适应布局：窄屏单列，宽度 ≥ 768px 时显示两列（`assets/css/custom-styles.css` 中的 `.project-list` 网格 + 断点）
 - 通过 GitHub Actions 自动构建并发布到 GitHub Pages
 
