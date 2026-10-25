@@ -1,6 +1,6 @@
 # zhuld.github.io
 
-个人主页 / 项目展示网站，基于 [Jekyll](https://jekyllrb.com/) 与 [Minima](https://github.com/jekyll/minima) 主题构建。
+个人主页 / 项目展示网站，基于 [Jekyll](https://jekyllrb.com/) 与 [Beautiful Jekyll](https://beautifuljekyll.com) 主题构建。
 
 ## 预览
 
@@ -8,8 +8,7 @@
 
 ## 功能特点
 
-- 使用 Jekyll 官方 **minima** 主题，布局、导航、页脚、SEO 与 RSS 均由主题与插件提供
-- 响应式布局，自动适配移动端
+- 使用 **Beautiful Jekyll 6** 主题（`beautiful-jekyll-theme` gem），自带 Bootstrap 4 响应式布局、移动端汉堡菜单与页脚社交链接
 - 项目列表数据驱动（`_data/projects.yml`，修改数据无需改 HTML）
 - 通过 GitHub Actions 自动构建并发布到 GitHub Pages
 
@@ -17,19 +16,19 @@
 
 ```
 zhuld.github.io/
-├── _config.yml             # Jekyll 全站配置（主题、插件、站点信息）
-├── Gemfile                 # Ruby 依赖（jekyll、minima 及插件）
-├── index.html              # 首页（使用 minima 的 home 布局）
+├── _config.yml                    # 站点与主题配置（导航、配色、社交链接、插件等）
+├── Gemfile                        # Ruby 依赖（jekyll、beautiful-jekyll-theme 及插件）
+├── index.html                     # 首页（布局：home）
 ├── _data/
-│   └── projects.yml        # 项目数据（名称、描述、链接、GitHub 仓库）
+│   └── projects.yml               # 项目数据（名称、描述、链接、GitHub 仓库）
 ├── assets/
-│   └── main.scss           # 在 minima 样式基础上的少量自定义（hero、项目列表）
+│   └── css/custom-styles.css      # 站点自定义样式（项目卡片）
 └── .github/
     └── workflows/
-        └── pages.yml       # GitHub Pages 构建与部署 workflow
+        └── pages.yml              # GitHub Pages 构建与部署 workflow
 ```
 
-主题的 `_layouts`、`_includes`、`_sass` 由 minima gem 提供，无需在仓库中维护；如需覆盖，可在本地新建同名文件。
+主题的 `_layouts`、`_includes`、`assets` 由 gem 提供，无需在仓库中维护；如需覆盖，可在仓库内新建同名文件。
 
 ## 本地运行
 
@@ -44,10 +43,7 @@ gem install bundler
 ### 启动开发服务器
 
 ```bash
-# 安装依赖
 bundle install
-
-# 启动本地服务器
 bundle exec jekyll serve
 ```
 
@@ -65,10 +61,13 @@ bundle exec jekyll build
 
 | 要修改的内容 | 操作文件 |
 |-------------|---------|
-| 站点标题、描述、作者、网址 | `_config.yml` |
+| 站点标题、作者、URL、语言 | `_config.yml` |
+| 导航栏链接 | `_config.yml` 中的 `navbar-links` |
+| 页脚社交链接 | `_config.yml` 中的 `social-network-links` |
+| 主题配色 | `_config.yml` 中的 `page-col`、`navbar-col`、`footer-col` 等 |
 | 增删/修改项目 | `_data/projects.yml` |
 | 首页文案与结构 | `index.html` |
-| 主题样式微调 | `assets/main.scss` |
+| 项目卡片等自定义样式 | `assets/css/custom-styles.css` |
 
 ## 部署到 GitHub Pages
 
@@ -80,7 +79,7 @@ bundle exec jekyll build
 
 ## 协议
 
-本项目基于 [MIT 协议](LICENSE) 开源。
+本项目基于 [MIT 协议](LICENSE) 开源；Beautiful Jekyll 主题同样以 MIT 协议发布。
 
 ---
 

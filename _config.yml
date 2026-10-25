@@ -1,35 +1,117 @@
-# Site settings
+###########################################################
+### zhuld.github.io — 基于 Beautiful Jekyll 主题的站点配置
+###########################################################
+
+############################
+# --- 站点基础信息 --- #
+############################
+
+# 网站名称（导航栏左上角显示）
 title: zhuld
-description: 个人主页
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://zhuld.github.io" # the base hostname & protocol for your site
+
+# 页脚显示的姓名
 author: zhuld
-lang: zh-CN
-github_username: zhuld # 用于 minima 页脚的 GitHub 链接
 
-# Theme（GitHub Pages 官方支持的 minima 主题）
-theme: minima
+url: "https://zhuld.github.io"
+baseurl: ""
 
-# Plugins
-plugins:
-  - jekyll-feed
-  - jekyll-seo-tag
-  - jekyll-sitemap
+# HTML lang 属性
+language: zh-CN
 
-# Build settings
+###############################################
+# --- 导航栏链接（单页锚点） --- #
+###############################################
+
+navbar-links:
+  关于我: "#about"
+  项目: "#projects"
+  联系方式: "#contact"
+
+#####################################
+# --- 页脚社交链接 --- #
+#####################################
+
+social-network-links:
+  github: zhuld
+  rss: true
+
+# 提供描述后会在页面 head 中加入 feed.xml 订阅链接
+rss-description: zhuld 的个人主页
+
+###########################
+# --- 通用选项 --- #
+###########################
+
+# 页脚显示的站点地址
+url-pretty: "zhuld.github.io"
+
+excerpt_length: 50
+feed_show_excerpt: true
+feed_show_tags: false
+post_search: false
+edit_page_button: false
+
+######################################
+# --- 配色 --- #
+######################################
+
+page-col: "#FFFFFF"
+text-col: "#404040"
+link-col: "#008AFF"
+hover-col: "#0085A1"
+navbar-col: "#EAEAEA"
+navbar-text-col: "#404040"
+navbar-border-col: "#DDDDDD"
+footer-col: "#EAEAEA"
+footer-text-col: "#777777"
+footer-link-col: "#404040"
+footer-hover-col: "#0085A1"
+
+# 站点自定义样式（在主题样式之后加载）
+site-css:
+  - "/assets/css/custom-styles.css"
+
+################
+# --- 其他 --- #
+################
+
+date_format: "%Y-%m-%d"
+timezone: "Asia/Shanghai"
 markdown: kramdown
 highlighter: rouge
 permalink: /:title/
-timezone: Asia/Shanghai
+paginate: 5
 
-minima:
-  date_format: "%Y-%m-%d"
+kramdown:
+  input: GFM
+
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      comments: false
+      social-share: true
+  -
+    scope:
+      path: ""
+    values:
+      layout: "page"
+
+# 主题与插件
+theme: beautiful-jekyll-theme
+plugins:
+  - jekyll-feed
+  - jekyll-paginate
+  - jekyll-sitemap
 
 # 不参与构建的文件
 exclude:
   - Gemfile
   - Gemfile.lock
-  - node_modules
-  - vendor
   - README.md
   - LICENSE
+  - node_modules
+  - vendor
