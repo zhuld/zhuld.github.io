@@ -17,7 +17,7 @@
 ```
 zhuld.github.io/
 ├── _config.yml                    # 站点与主题配置（导航、配色、社交链接、插件等）
-├── Gemfile                        # Ruby 依赖（jekyll、beautiful-jekyll-theme 及插件）
+├── Gemfile                        # Ruby 依赖（jekyll、jekyll-remote-theme 及插件）
 ├── index.html                     # 首页（布局：home）
 ├── _data/
 │   └── projects.yml               # 项目数据（名称、描述、链接、GitHub 仓库）
@@ -28,7 +28,9 @@ zhuld.github.io/
         └── pages.yml              # GitHub Pages 构建与部署 workflow
 ```
 
-主题的 `_layouts`、`_includes`、`assets` 由 gem 提供，无需在仓库中维护；如需覆盖，可在仓库内新建同名文件。
+主题通过 `_config.yml` 中的 `remote_theme: daattali/beautiful-jekyll@6.0.1` 引入（版本已固定），构建时自动拉取主题的 `_layouts`、`_includes`、`assets`，无需在仓库中维护；如需覆盖某个文件，可在仓库内新建同名文件。这种引入方式同时兼容 GitHub Pages 的「分支构建」与 GitHub Actions 构建。
+
+升级主题：修改 `_config.yml` 中的版本号（例如 `@6.0.1` → 更新的 tag）即可。
 
 ## 本地运行
 
@@ -73,9 +75,11 @@ bundle exec jekyll build
 
 仓库已包含 `.github/workflows/pages.yml`，推送 `main` 分支即自动构建部署：
 
-1. workflow 首次运行时会自动把 Pages 发布方式切换为 **GitHub Actions**（仓库原先的「分支构建」模式使用固定 gem 集合，无法加载 Beautiful Jekyll 主题）
-2. 推送代码到 `main` 分支（或在 Actions 页面手动运行 `Deploy Jekyll site to Pages`）
-3. workflow 构建完成后即可访问 `https://zhuld.github.io`
+1. 推送代码到 `main` 分支（或在 Actions 页面手动运行 `Deploy Jekyll site to Pages`）
+2. workflow 使用 Ruby 3.3 + Bundler 构建，并上传产物到 GitHub Pages
+3. 构建完成后即可访问 `https://zhuld.github.io`
+
+> 若仓库 Settings → Pages 的 Source 仍是「Deploy from a branch」，该分支构建同样可以正常工作（主题使用 `remote_theme` 引入）；推荐改为 **GitHub Actions**，以获得完整的依赖版本控制。
 
 ## 协议
 

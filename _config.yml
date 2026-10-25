@@ -100,9 +100,10 @@ defaults:
     values:
       layout: "page"
 
-# 主题与插件
-theme: beautiful-jekyll-theme
+# 主题与插件（remote_theme 同时兼容 GitHub Pages 的分支构建与 Actions 构建）
+remote_theme: daattali/beautiful-jekyll@6.0.1
 plugins:
+  - jekyll-remote-theme
   - jekyll-feed
   - jekyll-paginate
   - jekyll-sitemap
