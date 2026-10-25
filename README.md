@@ -85,6 +85,3 @@ bundle exec jekyll build
 
 本项目基于 [MIT 协议](LICENSE) 开源；Beautiful Jekyll 主题同样以 MIT 协议发布。
 
----
-
-Made with ❤️ by zhuld
