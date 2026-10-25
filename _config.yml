@@ -1,0 +1,18 @@
+# Site settings
+title: zhuld
+description: 个人主页
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://zhuld.github.io" # the base hostname & protocol for your site
+author: zhuld
+lang: zh-CN
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: /:title/
+
+# Collections (optional)
+collections:
+  projects:
+    output: true
+    sort_by: order

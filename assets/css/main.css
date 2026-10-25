@@ -1,0 +1,388 @@
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --accent: #a78bfa;
+            --accent-2: #5b8def;
+            --text: #e8e8f0;
+            --text-muted: #9aa3b5;
+            --glass-bg: rgba(16, 20, 38, 0.55);
+            --glass-bg-strong: rgba(16, 20, 38, 0.78);
+            --glass-border: rgba(255, 255, 255, 0.10);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: linear-gradient(135deg, #0e1220 0%, #1a1e35 45%, #101c30 100%);
+            min-height: 100vh;
+        }
+
+        /* 背景光斑：让磨砂玻璃的模糊效果更明显 */
+        body::before,
+        body::after {
+            content: "";
+            position: fixed;
+            z-index: -1;
+            border-radius: 50%;
+            filter: blur(40px);
+            pointer-events: none;
+        }
+
+        body::before {
+            top: -12rem;
+            right: -10rem;
+            width: 34rem;
+            height: 34rem;
+            background: radial-gradient(circle, rgba(91, 141, 239, 0.40) 0%, transparent 70%);
+        }
+
+        body::after {
+            bottom: -10rem;
+            left: -8rem;
+            width: 30rem;
+            height: 30rem;
+            background: radial-gradient(circle, rgba(167, 139, 250, 0.35) 0%, transparent 70%);
+        }
+        
+        header {
+            background: var(--glass-bg);
+            -webkit-backdrop-filter: blur(18px) saturate(1.5);
+            backdrop-filter: blur(18px) saturate(1.5);
+            border-bottom: 1px solid var(--glass-border);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.30);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent);
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--text-muted);
+            transition: color 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: var(--accent);
+        }
+        
+        /* 汉堡菜单按钮（仅移动端显示） */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 44px;
+            height: 44px;
+            padding: 10px;
+            background: none;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .nav-toggle .bar {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: var(--text);
+            border-radius: 2px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        
+        .nav-toggle:hover .bar,
+        .nav-toggle:active .bar {
+            background-color: var(--accent);
+        }
+        
+        /* 打开状态：三条杠变为 ✕ */
+        .nav-toggle[aria-expanded="true"] .bar:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+        
+        .nav-toggle[aria-expanded="true"] .bar:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .nav-toggle[aria-expanded="true"] .bar:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+        
+        main {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 2rem;
+        }
+        
+        .hero {
+            background: var(--glass-bg);
+            -webkit-backdrop-filter: blur(18px) saturate(1.5);
+            backdrop-filter: blur(18px) saturate(1.5);
+            border: 1px solid var(--glass-border);
+            border-radius: 18px;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+            margin-bottom: 2rem;
+            scroll-margin-top: 4rem;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-2), var(--accent));
+            color: #fff;
+            padding: 0.8rem 2rem;
+            border-radius: 999px;
+            box-shadow: 0 6px 16px rgba(91, 141, 239, 0.35);
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 22px rgba(167, 139, 250, 0.45);
+        }
+        
+        .content-section {
+            background: var(--glass-bg);
+            -webkit-backdrop-filter: blur(18px) saturate(1.5);
+            backdrop-filter: blur(18px) saturate(1.5);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+            scroll-margin-top: 4rem;
+        }
+        
+        .content-section h2 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        /* 新增项目样式 */
+        .projects-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .project-item {
+            width: calc(25% - 0.75rem);
+            min-width: 200px;
+            padding: 1.5rem;
+            border-radius: 14px;
+            background: var(--glass-bg-strong);
+            -webkit-backdrop-filter: blur(14px) saturate(1.4);
+            backdrop-filter: blur(14px) saturate(1.4);
+            border: 1px solid rgba(167, 139, 250, 0.28);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative; /* 为绝对定位的 GitHub 图标提供定位上下文 */
+            overflow: hidden;
+        }
+
+        .project-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 14px 30px rgba(167, 139, 250, 0.35);
+        }
+
+        .project-item h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            color: var(--text);
+        }
+
+        .project-item p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .project-item a {
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .project-item a:hover {
+            text-decoration: none;
+        }
+
+        /* GitHub 图标样式，位于卡片右下角 */
+        .github-link {
+            position: absolute;
+            right: 12px;
+            bottom: 12px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            transition: background 0.2s ease, transform 0.2s ease;
+            text-decoration: none;
+        }
+
+        .github-link:hover {
+            background: rgba(167, 139, 250, 0.30);
+            transform: translateY(-3px);
+        }
+
+        .github-link svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--text);
+            display: block;
+        }
+        
+        footer {
+            background: var(--glass-bg);
+            -webkit-backdrop-filter: blur(16px) saturate(1.4);
+            backdrop-filter: blur(16px) saturate(1.4);
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--glass-border);
+            margin-top: 3rem;
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 0.5rem 1rem;
+            }
+            
+            /* 显示汉堡按钮，隐藏菜单 */
+            .nav-toggle {
+                display: flex;
+            }
+            
+            nav ul {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                gap: 0;
+                background: var(--glass-bg-strong);
+                -webkit-backdrop-filter: blur(20px) saturate(1.5);
+                backdrop-filter: blur(20px) saturate(1.5);
+                border-top: 1px solid var(--glass-border);
+                box-shadow: 0 10px 22px rgba(0, 0, 0, 0.40);
+                
+                /* 收起/展开动画 */
+                max-height: 0;
+                overflow: hidden;
+                opacity: 0;
+                visibility: hidden;
+                transition: max-height 0.3s ease, opacity 0.3s ease, visibility 0.3s;
+            }
+            
+            nav ul.open {
+                max-height: 300px;
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            nav ul li {
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            }
+            
+            nav ul li:last-child {
+                border-bottom: none;
+            }
+            
+            /* 增大触控区域 */
+            nav ul a {
+                display: block;
+                padding: 0.9rem 1.5rem;
+                text-align: center;
+            }
+            
+            nav ul a:active {
+                background-color: rgba(167, 139, 250, 0.14);
+                color: var(--accent);
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero {
+                padding: 2rem 1rem;
+            }
+            
+            main {
+                margin: 1rem;
+                padding: 1rem;
+            }
+
+            .project-item {
+                width: calc(50% - 0.5rem);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .project-item {
+                width: 100%;
+            }
+            
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+        }
