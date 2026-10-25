@@ -73,7 +73,7 @@ bundle exec jekyll build
 
 仓库已包含 `.github/workflows/pages.yml`，推送 `main` 分支即自动构建部署：
 
-1. 在仓库 **Settings → Pages → Build and deployment** 中将 **Source** 设为 **GitHub Actions**
+1. workflow 首次运行时会自动把 Pages 发布方式切换为 **GitHub Actions**（仓库原先的「分支构建」模式使用固定 gem 集合，无法加载 Beautiful Jekyll 主题）
 2. 推送代码到 `main` 分支（或在 Actions 页面手动运行 `Deploy Jekyll site to Pages`）
 3. workflow 构建完成后即可访问 `https://zhuld.github.io`
 
