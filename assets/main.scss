@@ -1,0 +1,101 @@
+---
+---
+
+@import "minima";
+
+/**
+ * 首页 hero 区
+ */
+.hero {
+  padding: $spacing-unit 0 ($spacing-unit * 1.5);
+  margin-bottom: $spacing-unit;
+  border-bottom: 1px solid $grey-color-light;
+  text-align: center;
+
+  h1 {
+    @include relative-font-size(2.1);
+    line-height: 1.25;
+    margin-bottom: $spacing-unit * 0.4;
+  }
+}
+
+.hero-subtitle {
+  @include relative-font-size(1.1);
+  color: $grey-color-dark;
+  margin-bottom: $spacing-unit * 0.5;
+}
+
+.hero-button {
+  display: inline-block;
+  padding: ($spacing-unit * 0.35) ($spacing-unit * 0.9);
+  border-radius: 4px;
+  background-color: $brand-color;
+  color: #fff;
+
+  &:visited {
+    color: #fff;
+  }
+
+  &:hover {
+    background-color: darken($brand-color, 8%);
+    color: #fff;
+    text-decoration: none;
+  }
+}
+
+/**
+ * 内容分区
+ */
+.section {
+  margin-bottom: $spacing-unit * 1.5;
+}
+
+/**
+ * 项目列表
+ */
+.project-list {
+  list-style: none;
+  margin-left: 0;
+}
+
+.project-item {
+  position: relative;
+  padding: ($spacing-unit * 0.4) ($spacing-unit * 0.75);
+  padding-right: $spacing-unit * 2.2;
+  margin-bottom: $spacing-unit * 0.5;
+  border-left: 3px solid $brand-color;
+  border-radius: 0 4px 4px 0;
+  background-color: lighten($grey-color-light, 6%);
+}
+
+.project-name {
+  display: block;
+  font-weight: 600;
+}
+
+.project-desc {
+  margin: 2px 0 0;
+  font-size: $small-font-size;
+  color: $grey-color-dark;
+}
+
+.project-github {
+  position: absolute;
+  top: $spacing-unit * 0.4;
+  right: $spacing-unit * 0.75;
+  line-height: 1;
+
+  .svg-icon {
+    padding-right: 0;
+  }
+
+  &:hover .svg-icon {
+    fill: $brand-color;
+  }
+}
+
+@media screen and (max-width: $on-palm) {
+  .hero h1 {
+    @include relative-font-size(1.7);
+  }
+}

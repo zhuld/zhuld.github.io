@@ -1,6 +1,6 @@
 # zhuld.github.io
 
-个人主页 / 项目展示网站，基于 [Jekyll](https://jekyllrb.com/) 构建，使用磨砂玻璃（Glassmorphism）设计风格。
+个人主页 / 项目展示网站，基于 [Jekyll](https://jekyllrb.com/) 与 [Minima](https://github.com/jekyll/minima) 主题构建。
 
 ## 预览
 
@@ -8,48 +8,43 @@
 
 ## 功能特点
 
-- 响应式布局，支持移动端汉堡菜单
-- 磨砂玻璃视觉效果（backdrop-filter）
-- 平滑滚动与导航高亮
+- 使用 Jekyll 官方 **minima** 主题，布局、导航、页脚、SEO 与 RSS 均由主题与插件提供
+- 响应式布局，自动适配移动端
 - 项目列表数据驱动（`_data/projects.yml`，修改数据无需改 HTML）
-- 基于 Jekyll，易于部署到 GitHub Pages
+- 通过 GitHub Actions 自动构建并发布到 GitHub Pages
 
 ## 项目结构
 
 ```
 zhuld.github.io/
-├── _config.yml           # Jekyll 全站配置
-├── index.html            # 首页（使用 default 布局）
+├── _config.yml             # Jekyll 全站配置（主题、插件、站点信息）
+├── Gemfile                 # Ruby 依赖（jekyll、minima 及插件）
+├── index.html              # 首页（使用 minima 的 home 布局）
 ├── _data/
-│   └── projects.yml      # 项目数据（名称、描述、链接、GitHub 仓库）
-├── _includes/
-│   ├── header.html       # 顶部导航（可复用片段）
-│   ├── footer.html       # 底部版权（可复用片段）
-│   └── github-icon.html  # GitHub 图标 SVG
-├── _layouts/
-│   └── default.html      # 基础布局（head / header / content / footer / script）
-└── assets/
-    ├── css/main.css      # 样式表
-    └── js/main.js        # 交互脚本（汉堡菜单、平滑滚动等）
+│   └── projects.yml        # 项目数据（名称、描述、链接、GitHub 仓库）
+├── assets/
+│   └── main.scss           # 在 minima 样式基础上的少量自定义（hero、项目列表）
+└── .github/
+    └── workflows/
+        └── pages.yml       # GitHub Pages 构建与部署 workflow
 ```
+
+主题的 `_layouts`、`_includes`、`_sass` 由 minima gem 提供，无需在仓库中维护；如需覆盖，可在本地新建同名文件。
 
 ## 本地运行
 
 ### 前提条件
 
-确保已安装 [Ruby](https://www.ruby-lang.org/en/downloads/) 与 [Jekyll](https://jekyllrb.com/docs/installation/)：
+安装 [Ruby](https://rubyinstaller.org/)（Windows）或使用系统包管理器安装 Ruby，然后安装 Bundler：
 
 ```bash
-gem install jekyll bundler
+gem install bundler
 ```
 
 ### 启动开发服务器
 
 ```bash
-# 进入项目目录
-cd zhuld.github.io
-
-# 安装依赖（如有 Gemfile）
+# 安装依赖
 bundle install
 
 # 启动本地服务器
@@ -64,7 +59,7 @@ bundle exec jekyll serve
 bundle exec jekyll build
 ```
 
-生成的静态文件位于 `_site/` 目录，可直接部署到 GitHub Pages 或任何静态托管平台。
+生成的静态文件位于 `_site/` 目录。
 
 ## 自定义内容
 
@@ -72,16 +67,16 @@ bundle exec jekyll build
 |-------------|---------|
 | 站点标题、描述、作者、网址 | `_config.yml` |
 | 增删/修改项目 | `_data/projects.yml` |
-| 页面整体布局 | `_layouts/default.html` |
-| 顶部导航 / 底部版权 | `_includes/header.html`、`_includes/footer.html` |
-| 样式 | `assets/css/main.css` |
-| 交互脚本 | `assets/js/main.js` |
+| 首页文案与结构 | `index.html` |
+| 主题样式微调 | `assets/main.scss` |
 
 ## 部署到 GitHub Pages
 
-1. 将代码推送到 `username.github.io` 仓库的 `main` 分支
-2. 在仓库设置中启用 GitHub Pages（Source 选择 `main` 分支 / `/root`）
-3. 等待几分钟后即可访问 `https://username.github.io`
+仓库已包含 `.github/workflows/pages.yml`，推送 `main` 分支即自动构建部署：
+
+1. 在仓库 **Settings → Pages → Build and deployment** 中将 **Source** 设为 **GitHub Actions**
+2. 推送代码到 `main` 分支（或在 Actions 页面手动运行 `Deploy Jekyll site to Pages`）
+3. workflow 构建完成后即可访问 `https://zhuld.github.io`
 
 ## 协议
 

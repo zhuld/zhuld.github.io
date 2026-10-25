@@ -5,14 +5,31 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://zhuld.github.io" # the base hostname & protocol for your site
 author: zhuld
 lang: zh-CN
+github_username: zhuld # 用于 minima 页脚的 GitHub 链接
+
+# Theme（GitHub Pages 官方支持的 minima 主题）
+theme: minima
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
 
 # Build settings
 markdown: kramdown
 highlighter: rouge
 permalink: /:title/
+timezone: Asia/Shanghai
 
-# Collections (optional)
-collections:
-  projects:
-    output: true
-    sort_by: order
+minima:
+  date_format: "%Y-%m-%d"
+
+# 不参与构建的文件
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - README.md
+  - LICENSE
