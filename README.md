@@ -9,7 +9,8 @@
 ## 功能特点
 
 - 使用 **Beautiful Jekyll 6** 主题（`beautiful-jekyll-theme` gem），自带 Bootstrap 4 响应式布局、移动端汉堡菜单与页脚社交链接
-- 项目列表数据驱动（`_data/projects.yml`，修改数据无需改 HTML）
+- 项目列表**自动同步**自 GitHub：页面加载时调用 GitHub 公开 API 列出该账号的全部公开仓库，无需手工维护数据文件
+- 已开启 GitHub Pages 的仓库（`has_pages` 为真）会自动附带「演示」链接，指向 `https://<用户名>.github.io/<仓库名>/`
 - 通过 GitHub Actions 自动构建并发布到 GitHub Pages
 
 ## 项目结构
@@ -19,9 +20,8 @@ zhuld.github.io/
 ├── _config.yml                    # 站点与主题配置（导航、配色、社交链接、插件等）
 ├── Gemfile                        # Ruby 依赖（jekyll、jekyll-remote-theme 及插件）
 ├── index.html                     # 首页（布局：home）
-├── _data/
-│   └── projects.yml               # 项目数据（名称、描述、链接、GitHub 仓库）
 ├── assets/
+│   ├── js/projects.js             # 项目列表：调用 GitHub API 自动渲染
 │   └── css/custom-styles.css      # 站点自定义样式（项目卡片）
 └── .github/
     └── workflows/
@@ -67,9 +67,19 @@ bundle exec jekyll build
 | 导航栏链接 | `_config.yml` 中的 `navbar-links` |
 | 页脚社交链接 | `_config.yml` 中的 `social-network-links` |
 | 主题配色 | `_config.yml` 中的 `page-col`、`navbar-col`、`footer-col` 等 |
-| 增删/修改项目 | `_data/projects.yml` |
+| 增删/修改项目 | 直接增删 GitHub 仓库即可，页面自动同步（数据来源见 `assets/js/projects.js`） |
 | 首页文案与结构 | `index.html` |
 | 项目卡片等自定义样式 | `assets/css/custom-styles.css` |
+
+### 项目列表的工作方式
+
+- 用户名取自 `_config.yml` 的 `social-network-links.github`，修改该值即可切换同步的账号
+- 会排除 **fork** 的仓库，以及用户主页仓库本身（`<用户名>.github.io`），其余公开仓库全部列出
+- 按最近推送时间倒序排列；无描述时显示「暂无描述」
+- 结果在 `sessionStorage` 中缓存 10 分钟，以减少未认证 API（每小时 60 次）的调用
+- 若 API 不可用（如触发限流），页面会提示并给出 GitHub 主页链接；关闭 JavaScript 时通过 `<noscript>` 提示
+
+> 说明：Pages 链接按 GitHub Pages 的默认规则拼接为 `https://<用户名>.github.io/<仓库名>/`；若某个仓库为 Pages 配置了自定义域名，GitHub 会自动从该地址跳转。
 
 ## 部署到 GitHub Pages
 
