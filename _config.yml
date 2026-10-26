@@ -27,7 +27,6 @@ language: zh-CN
 navbar-links:
   关于我: "#about"
   项目: "#projects"
-  联系方式: "#contact"
 
 #####################################
 # --- 页脚社交链接 --- #
