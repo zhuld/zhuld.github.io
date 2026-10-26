@@ -1,0 +1,80 @@
+[
+  {
+    "name": "studyC",
+    "description": "《C程序设计语言》交互读本",
+    "url": "https://github.com/zhuld/studyC",
+    "pages": "https://zhuld.github.io/studyC/"
+  },
+  {
+    "name": "zhuld.github.io",
+    "description": "个人主页 / 项目展示网站",
+    "url": "https://github.com/zhuld/zhuld.github.io",
+    "pages": "https://zhuld.github.io/"
+  },
+  {
+    "name": "studyCpp",
+    "description": "C++ Primer（中文版）第 5 版  交互读本",
+    "url": "https://github.com/zhuld/studyCpp",
+    "pages": "https://zhuld.github.io/studyCpp/"
+  },
+  {
+    "name": "pptTimer",
+    "description": "PPT 计时器",
+    "url": "https://github.com/zhuld/pptTimer",
+    "pages": null
+  },
+  {
+    "name": "TouchPad",
+    "description": "基于 Qt 6 / QML 的 Crestron 中控触控面板应用",
+    "url": "https://github.com/zhuld/TouchPad",
+    "pages": null
+  },
+  {
+    "name": "TouchShow",
+    "description": "基于 Vite、TypeScript 和 Three.js 的触控展览展示系统",
+    "url": "https://github.com/zhuld/TouchShow",
+    "pages": "https://zhuld.github.io/TouchShow/"
+  },
+  {
+    "name": "ledShow",
+    "description": " Windows 下的无边框 LED 倒计时显示程序",
+    "url": "https://github.com/zhuld/ledShow",
+    "pages": null
+  },
+  {
+    "name": "CIP-HarmonyOS",
+    "description": "CIP Crestron-over-IP client working under HarmonyOS",
+    "url": "https://github.com/zhuld/CIP-HarmonyOS",
+    "pages": null
+  },
+  {
+    "name": "Fitness-counter",
+    "description": "健身动作计数系统 ",
+    "url": "https://github.com/zhuld/Fitness-counter",
+    "pages": null
+  },
+  {
+    "name": "wenshu",
+    "description": "裁判文书数据本地检索",
+    "url": "https://github.com/zhuld/wenshu",
+    "pages": null
+  },
+  {
+    "name": "TableCapture",
+    "description": "chrome插件，自动识别网页中的成绩表，并导出为 JSON 文件",
+    "url": "https://github.com/zhuld/TableCapture",
+    "pages": null
+  },
+  {
+    "name": "MediaPlayer",
+    "description": null,
+    "url": "https://github.com/zhuld/MediaPlayer",
+    "pages": null
+  },
+  {
+    "name": "Tendzone",
+    "description": "Tendzone Android controller",
+    "url": "https://github.com/zhuld/Tendzone",
+    "pages": null
+  }
+]

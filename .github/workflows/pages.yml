@@ -4,6 +4,8 @@ on:
   push:
     branches: ["main"]
   workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
 
 permissions:
   contents: read
@@ -26,6 +28,12 @@ jobs:
         with:
           ruby-version: "3.3"
           bundler-cache: true
+
+      - name: Generate project list
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_USER: zhuld
+        run: python scripts/generate_projects.py
 
       - name: Setup Pages
         id: pages
