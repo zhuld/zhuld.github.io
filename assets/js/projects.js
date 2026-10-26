@@ -26,7 +26,7 @@
   }
 
   var profileRepo = (user + ".github.io").toLowerCase();
-  var cacheKey = "gh-projects:" + user.toLowerCase();
+  var cacheKey = "gh-projects:v2:" + user.toLowerCase();
 
   function pagesUrl(repoName) {
     var base = "https://" + user.toLowerCase() + ".github.io";
@@ -107,8 +107,8 @@
   function normalize(repos) {
     return repos
       .filter(function (repo) {
-        // 排除 fork 与站点仓库本身，只保留本人的公开项目
-        return !repo.fork && repo.name.toLowerCase() !== profileRepo;
+        // 排除 fork，只保留本人的公开项目（含站点仓库本身）
+        return !repo.fork;
       })
       .sort(function (a, b) {
         return new Date(b.pushed_at || 0) - new Date(a.pushed_at || 0);
