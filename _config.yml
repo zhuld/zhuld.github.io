@@ -10,10 +10,10 @@
 title: 项目列表
 
 # 页脚显示的姓名
-author: 
-  name: zhuld
-  email: lidongzhu@gmail.com
+author: zhuld
   
+email: lidongzhu@gmail.com
+
 url: "https://zhuld.github.io"
 baseurl: ""
 
