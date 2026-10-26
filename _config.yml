@@ -35,6 +35,7 @@ navbar-links:
 
 social-network-links:
   github: zhuld
+  email: lidongzhu@gmail.com
 
 # 提供描述后会在页面 head 中加入 feed.xml 订阅链接
 rss-description: zhuld 的个人主页
