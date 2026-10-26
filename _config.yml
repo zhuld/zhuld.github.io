@@ -7,11 +7,13 @@
 ############################
 
 # 网站名称（导航栏左上角显示）
-title: zhuld
+title: 项目列表
 
 # 页脚显示的姓名
-author: zhuld
-
+author: 
+  name: zhuld
+  email: lidongzhu@gmail.com
+  
 url: "https://zhuld.github.io"
 baseurl: ""
 
