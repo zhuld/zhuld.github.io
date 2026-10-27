@@ -92,7 +92,41 @@ bundle exec jekyll build
 
 > 若仓库 Settings → Pages 的 Source 仍是「Deploy from a branch」，该分支构建同样可以正常工作（主题使用 `remote_theme` 引入）；推荐改为 **GitHub Actions**，以获得完整的依赖版本控制。
 
+### 项目仓库更新后自动部署
+
+网站 workflow 也会在收到 `project_updated` 事件时重新生成项目列表并部署。要让项目仓库推送时立即发送此事件，需要在每个项目仓库中配置：
+
+1. 创建一个仅授权 `zhuld/zhuld.github.io` 仓库、具有 **Contents: read and write** 权限的 fine-grained personal access token。
+2. 在项目仓库的 **Settings → Secrets and variables → Actions** 中添加名为 `PROJECTS_DISPATCH_TOKEN` 的 repository secret，值为上一步创建的 token。
+3. 在项目仓库添加 `.github/workflows/notify-website.yml`：
+
+```yaml
+name: Notify website
+
+on:
+  push:
+
+permissions:
+  contents: read
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger website update
+        env:
+          GH_TOKEN: ${{ secrets.PROJECTS_DISPATCH_TOKEN }}
+        run: |
+          curl --fail-with-body --request POST \
+            --oauth2-bearer "$GH_TOKEN" \
+            --url https://api.github.com/repos/zhuld/zhuld.github.io/dispatches \
+            --header "Accept: application/vnd.github+json" \
+            --header "X-GitHub-Api-Version: 2022-11-28" \
+            --data '{"event_type":"project_updated"}'
+```
+
+配置完成后，每次推送到项目仓库都会触发网站更新。现有每日定时同步仍会保留，作为兜底。
+
 ## 协议
 
 本项目基于 [MIT 协议](LICENSE) 开源；Beautiful Jekyll 主题同样以 MIT 协议发布。
-

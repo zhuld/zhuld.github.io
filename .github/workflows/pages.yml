@@ -3,6 +3,8 @@ name: Deploy Jekyll site to Pages
 on:
   push:
     branches: ["main"]
+  repository_dispatch:
+    types: [project_updated]
   workflow_dispatch:
   schedule:
     - cron: "0 0 * * *"
