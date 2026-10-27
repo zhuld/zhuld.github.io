@@ -1,15 +1,21 @@
 [
   {
-    "name": "studyC",
-    "description": "《C程序设计语言》交互读本",
-    "url": "https://github.com/zhuld/studyC",
-    "pages": "https://zhuld.github.io/studyC/"
-  },
-  {
     "name": "zhuld.github.io",
     "description": "个人主页 / 项目展示网站",
     "url": "https://github.com/zhuld/zhuld.github.io",
     "pages": "https://zhuld.github.io/"
+  },
+  {
+    "name": "3DView",
+    "description": "浏览器端的 3D 物体查看器",
+    "url": "https://github.com/zhuld/3DView",
+    "pages": "https://zhuld.github.io/3DView/"
+  },
+  {
+    "name": "studyC",
+    "description": "《C程序设计语言》交互读本",
+    "url": "https://github.com/zhuld/studyC",
+    "pages": "https://zhuld.github.io/studyC/"
   },
   {
     "name": "studyCpp",
